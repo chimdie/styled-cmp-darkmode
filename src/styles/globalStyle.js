@@ -20,12 +20,9 @@ export const GlobalStyle = createGlobalStyle`
   body{
     height: 100%;
     font-family: 'Sniglet', cursive, 'Roboto', 'Oxygen';
-    /* color: rgba(107, 114, 128); */
     color: ${({ theme }) => theme.color};
     background-color: ${({ theme }) => theme.body};
     line-height: 1.5;
     transition: background-color 0.2s ease-in, color 0.2s ease-in;
   }
 `;
-
-// export default GlobalStyle;

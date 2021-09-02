@@ -60,13 +60,13 @@ const Btn = styled.button`
 
 function App() {
   const [theme, setTheme] = useState("light");
-  const toggleDark = theme === 'dark'
+  const toggleTheme = theme === 'dark'
 
   const handleClick = (e) => {
-    setTheme(toggleDark ? "light" : "dark")
+    setTheme(toggleTheme ? "light" : "dark")
   };
   return (
-    <ThemeProvider theme={toggleDark ? darkTheme : lightTheme}>
+    <ThemeProvider theme={toggleTheme ? darkTheme : lightTheme}>
       <GlobalStyle />
       <Content className="App">
         <Level className="level">
