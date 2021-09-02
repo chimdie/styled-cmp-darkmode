@@ -58,38 +58,49 @@ const Btn = styled.button`
   width: 100px;
 `;
 
+const Columns = styled.div``;
+
+const Column = styled.div`
+  padding: 1rem 0;
+`;
+
+const Field = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+`;
+
+const Input = styled.input`
+  width: 100%;
+`;
 function App() {
   const [theme, setTheme] = useState("light");
-  const toggleTheme = theme === 'dark'
+  const toggleTheme = theme === "dark";
 
-  const handleClick = (e) => {
-    setTheme(toggleTheme ? "light" : "dark")
-  };
+  const handleClick = (e) => setTheme(toggleTheme ? "light" : "dark");
+
   return (
     <ThemeProvider theme={toggleTheme ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Content className="App">
-        <Level className="level">
+      <Content>
+        <Level>
           <div>
-            <Title className="title">Lollipop and Marshmallow</Title>
+            <Title>Lollipop and Marshmallow</Title>
           </div>
 
-          <ToggleBtn
-            className="app__dark-mode-btn icon level-right"
-            onClick={handleClick}
-          >
+          <ToggleBtn onClick={handleClick}>
             <span aria-label="switch theme">
-              {theme ? (
+              {toggleTheme ? (
                 <FontAwesomeIcon icon={faSun} color={"#FFA500"} />
               ) : (
-                <FontAwesomeIcon icon={faMoon} />
+                <FontAwesomeIcon icon={faMoon} color={"#FFA500"} />
               )}
             </span>
           </ToggleBtn>
         </Level>
 
-        <div className="columns">
-          <div className="column">
+        <Columns>
+          <Column>
             <p>
               Lollipop powder powder. Cotton candy caramels chupa chups halvah
               muffin caramels apple pie topping cake. Topping chocolate bar
@@ -98,8 +109,8 @@ function App() {
               apple pie pudding caramels wafer tart tootsie roll macaroon.
               Croissant tiramisu chocolate bar carrot cake lemon drops halvah.
             </p>
-          </div>
-          <div className="column">
+          </Column>
+          <Column>
             <p>
               Marshmallow tiramisu liquorice bear claw chocolate bar bear claw
               tart. Muffin chupa chups pie. Brownie apple pie topping lemon
@@ -107,23 +118,23 @@ function App() {
               cake tart. Pudding sugar plum chocolate cake cake biscuit pastry
               pastry chocolate bar tart. Lemon drops dessert gummies icing.
             </p>
-          </div>
-        </div>
+          </Column>
+        </Columns>
 
-        <div className="field">
+        <Field>
           <div className="control">
-            <input className="input" type="text" placeholder="Name" />
+            <Input type="text" placeholder="Name" />
           </div>
-        </div>
+        </Field>
 
-        <div className="field">
+        <Field>
           <div className="control">
-            <input className="input" type="text" placeholder="Email" />
+            <Input type="text" placeholder="Email" />
           </div>
-        </div>
+        </Field>
 
-        <Section className="section">
-          <Buttons className="buttons level-right">
+        <Section>
+          <Buttons>
             <Btn>Save</Btn>
             <Btn>Submit</Btn>
           </Buttons>
