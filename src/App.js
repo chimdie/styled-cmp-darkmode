@@ -11,8 +11,8 @@ const Content = styled.div`
   justify-content: center;
   height: 100vh;
   padding: 10%;
-  margin: auto;
-  max-width: 1000px;
+  /* margin: auto; */
+  /* max-width: 1000px; */
 `;
 
 const Section = styled.section`
@@ -51,45 +51,76 @@ const Title = styled.h2`
   font-size: 1.2rem;
 `;
 
-const Buttons = styled.div``;
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
 
 const Btn = styled.button`
   height: 30px;
   width: 100px;
+  margin: 1rem;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
+const Columns = styled.div``;
+
+const Column = styled.div`
+  padding: 1rem 0;
+`;
+
+const Fields = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Field = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 0.6rem;
+  &:focus {
+    outline: none;
+  }
+`;
 function App() {
   const [theme, setTheme] = useState("light");
-  const toggleDark = theme === 'dark'
+  const toggleTheme = theme === "dark";
 
-  const handleClick = (e) => {
-    setTheme(toggleDark ? "light" : "dark")
-  };
+  const handleClick = () => setTheme(toggleTheme ? "light" : "dark");
+
   return (
-    <ThemeProvider theme={toggleDark ? darkTheme : lightTheme}>
+    <ThemeProvider theme={toggleTheme ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Content className="App">
-        <Level className="level">
+      <Content>
+        <Level>
           <div>
-            <Title className="title">Lollipop and Marshmallow</Title>
+            <Title>Lollipop and Marshmallow</Title>
           </div>
 
-          <ToggleBtn
-            className="app__dark-mode-btn icon level-right"
-            onClick={handleClick}
-          >
+          <ToggleBtn onClick={handleClick}>
             <span aria-label="switch theme">
-              {theme ? (
+              {toggleTheme ? (
                 <FontAwesomeIcon icon={faSun} color={"#FFA500"} />
               ) : (
-                <FontAwesomeIcon icon={faMoon} />
+                <FontAwesomeIcon icon={faMoon} color={"#FFA500"} />
               )}
             </span>
           </ToggleBtn>
         </Level>
 
-        <div className="columns">
-          <div className="column">
+        <Columns>
+          <Column>
             <p>
               Lollipop powder powder. Cotton candy caramels chupa chups halvah
               muffin caramels apple pie topping cake. Topping chocolate bar
@@ -98,8 +129,8 @@ function App() {
               apple pie pudding caramels wafer tart tootsie roll macaroon.
               Croissant tiramisu chocolate bar carrot cake lemon drops halvah.
             </p>
-          </div>
-          <div className="column">
+          </Column>
+          <Column>
             <p>
               Marshmallow tiramisu liquorice bear claw chocolate bar bear claw
               tart. Muffin chupa chups pie. Brownie apple pie topping lemon
@@ -107,23 +138,25 @@ function App() {
               cake tart. Pudding sugar plum chocolate cake cake biscuit pastry
               pastry chocolate bar tart. Lemon drops dessert gummies icing.
             </p>
-          </div>
-        </div>
+          </Column>
+        </Columns>
 
-        <div className="field">
-          <div className="control">
-            <input className="input" type="text" placeholder="Name" />
-          </div>
-        </div>
+        <Fields>
+          <Field>
+            <div className="control">
+              <Input type="text" placeholder="Name" />
+            </div>
+          </Field>
 
-        <div className="field">
-          <div className="control">
-            <input className="input" type="text" placeholder="Email" />
-          </div>
-        </div>
+          <Field>
+            <div className="control">
+              <Input type="text" placeholder="Email" />
+            </div>
+          </Field>
+        </Fields>
 
-        <Section className="section">
-          <Buttons className="buttons level-right">
+        <Section>
+          <Buttons>
             <Btn>Save</Btn>
             <Btn>Submit</Btn>
           </Buttons>
