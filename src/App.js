@@ -11,8 +11,8 @@ const Content = styled.div`
   justify-content: center;
   height: 100vh;
   padding: 10%;
-  margin: auto;
-  max-width: 1000px;
+  /* margin: auto; */
+  /* max-width: 1000px; */
 `;
 
 const Section = styled.section`
@@ -51,11 +51,20 @@ const Title = styled.h2`
   font-size: 1.2rem;
 `;
 
-const Buttons = styled.div``;
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
 
 const Btn = styled.button`
   height: 30px;
   width: 100px;
+  margin: 1rem;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const Columns = styled.div``;
@@ -64,20 +73,31 @@ const Column = styled.div`
   padding: 1rem 0;
 `;
 
+const Fields = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 const Field = styled.div`
   display: flex;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem;
 `;
 
 const Input = styled.input`
   width: 100%;
+  padding: 0.6rem;
+  &:focus {
+    outline: none;
+  }
 `;
 function App() {
   const [theme, setTheme] = useState("light");
   const toggleTheme = theme === "dark";
 
-  const handleClick = (e) => setTheme(toggleTheme ? "light" : "dark");
+  const handleClick = () => setTheme(toggleTheme ? "light" : "dark");
 
   return (
     <ThemeProvider theme={toggleTheme ? darkTheme : lightTheme}>
@@ -121,17 +141,19 @@ function App() {
           </Column>
         </Columns>
 
-        <Field>
-          <div className="control">
-            <Input type="text" placeholder="Name" />
-          </div>
-        </Field>
+        <Fields>
+          <Field>
+            <div className="control">
+              <Input type="text" placeholder="Name" />
+            </div>
+          </Field>
 
-        <Field>
-          <div className="control">
-            <Input type="text" placeholder="Email" />
-          </div>
-        </Field>
+          <Field>
+            <div className="control">
+              <Input type="text" placeholder="Email" />
+            </div>
+          </Field>
+        </Fields>
 
         <Section>
           <Buttons>
