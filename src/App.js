@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import styled, { ThemeProvider } from "styled-components";
@@ -60,13 +60,30 @@ const Btn = styled.button`
 
 function App() {
   const [theme, setTheme] = useState("light");
-  const toggleDark = theme === 'dark'
+  const toggleTheme = theme === "dark";
 
   const handleClick = (e) => {
-    setTheme(toggleDark ? "light" : "dark")
+    const updatedTheme = toggleTheme ? "light" : "dark";
+
+    setTheme(updatedTheme);
+    localStorage.setItem("theme", updatedTheme);
   };
+
+  useEffect(() => {
+    //on component mount, the app still maintains the preferred or previously used theme
+    const savedTheme = localStorage.getItem("theme");
+    const preferredTheme =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (savedTheme && ["dark", "light"].includes(savedTheme)) {
+      setTheme(savedTheme);
+    } else if (preferredTheme) {
+      setTheme("dark");
+    }
+  }, []);
   return (
-    <ThemeProvider theme={toggleDark ? darkTheme : lightTheme}>
+    <ThemeProvider theme={toggleTheme ? darkTheme : lightTheme}>
       <GlobalStyle />
       <Content className="App">
         <Level className="level">
@@ -79,7 +96,7 @@ function App() {
             onClick={handleClick}
           >
             <span aria-label="switch theme">
-              {theme ? (
+              {toggleTheme ? (
                 <FontAwesomeIcon icon={faSun} color={"#FFA500"} />
               ) : (
                 <FontAwesomeIcon icon={faMoon} />
