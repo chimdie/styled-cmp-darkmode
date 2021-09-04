@@ -1,8 +1,7 @@
-export const dark-mode = "dark-mode"
+export const DARK_MODE = 'dark_mode';
 
-export function darkModeAction(variable) {
+export function darkModeAction() {
     return { 
-        type: dark-mode,
-        payload: variable
+        type: DARK_MODE
     }
 }
