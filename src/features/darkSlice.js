@@ -1,9 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
 export const darkSlice = createSlice({
-    name: 'dark-mode',
-    state: {},
-    reducers: {
-
-    }
-})
+  name: "dark-mode",
+  reducers: {
+    darkTheme: "dark-mode",
+  },
+});
