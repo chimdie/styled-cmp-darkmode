@@ -9,10 +9,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
   padding: 10%;
-  /* margin: auto; */
-  /* max-width: 1000px; */
 `;
 
 const Section = styled.section`
